@@ -1,0 +1,28 @@
+{
+    "name": "webcraft-api",
+    "description": "An API to get static content for webcraft server.",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "dbyzero@git.oopss.org:webcraft-api.git"
+    },
+    "author": "Cyril ALFARO (Dbyzero)",
+    "contributors": [
+    ],
+    "keywords": [
+        "webcraft"
+    ],
+    "bugs": {
+        "email": "cyril@dbyzero.com"
+    },
+    "directories": {
+    },
+    "main": "server.js",
+    "engines": {
+        "node": ">=0.10"
+    },
+    "dependencies": {
+        "restify": "~2.0",
+        "mongoose": "~3.0"
+    }
+}
