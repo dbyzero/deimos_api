@@ -26,6 +26,11 @@ mongoose.connect('mongodb://localhost:27017/deimos_test',function(err){
 	//for curl purpose
 	server.pre(restify.pre.userAgentConnection());
 
+	server.use(function(req,res,next){
+		console.log(req.url);
+		return next();
+	});
+
 	new Route_Teapot().addRoute(server);
 	new Route_Account().addRoute(server);
 	new Route_Avatar().addRoute(server);
