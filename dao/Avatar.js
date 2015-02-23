@@ -14,6 +14,7 @@ var accountSchema = mongoose.Schema({
 	willpower				: { type:Number },
 	intelligence			: { type:Number },
 	focusing				: { type:Number },
+	deltashow				: { type:Object },
 	item_slot_head			: { type:Object },
 	item_slot_chest			: { type:Object },
 	item_slot_foot			: { type:Object },

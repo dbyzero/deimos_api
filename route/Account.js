@@ -37,7 +37,7 @@ Route_Account.prototype.addRoute = function(server) {
 
 	//POST /account/register/:account/:password
 	//Register a client with a Account/Password. Return the sessionid
-	server.post('/'+this.collection+'/register/:account/:password', function(req,res,next){
+	server.post('/'+this.collection+'/register/:account/:password/:gamearea', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','POST');
 		DAO_Account.findOne({login:req.params.account},'+usedBySession +password').exec()
 			//check if account exist
@@ -66,20 +66,17 @@ Route_Account.prototype.addRoute = function(server) {
 				}
 				//else we register the account and return the session id
 				var sessionid = cryptojs.MD5(req.params.account + new Date() + '!!secret_string!!!!!!!!' + parseInt(Math.random()*0, 100000))+'';
-				// var sessionid = new Date().getTime()+'';
 				var session = new DAO_Session();
 				session.id = sessionid;
-				session.ip = '127.0.0.1';
+				session.ip = req.connection.remoteAddress;
 				session.account = req.params.account;
 				session.avatar = null;
+				session.gamearea = req.params.gamearea;
 				session.save(function(err, result, numberAffected){
 					if(err) throw err;
 					res.send(200,{sessionid:result.id });
 					return next();
 				});
-			// .then(function(){
-				//todo add session used to avatar
-			// })
 			},function(err){throw err;})
 	});
 }

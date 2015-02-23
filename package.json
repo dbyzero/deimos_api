@@ -1,7 +1,7 @@
 {
     "name": "webcraft-api",
     "description": "An API to get static content for webcraft server.",
-    "version": "0.2",
+    "version": "0.0.3",
     "repository": {
         "type": "git",
         "url": "dbyzero@git.oopss.org:webcraft-api.git"
@@ -25,6 +25,8 @@
         "restify": "~2",
         "mongoose": "~3",
         "colors": "~1",
-        "crypto-js": "~3"
+        "crypto-js": "~3",
+        "q": "~1",
+        "inherits": "~2"
     }
 }
