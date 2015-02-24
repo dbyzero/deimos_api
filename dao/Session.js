@@ -10,4 +10,3 @@ var sessionSchema = mongoose.Schema({
 });
 
 module.exports =  mongoose.model('session', sessionSchema);
-

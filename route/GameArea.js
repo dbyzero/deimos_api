@@ -37,6 +37,7 @@ Route_GameArea.prototype.addRoute = function(server) {
 					throw err;
 				}
 			).end(function() {
+				res.end();
 				return next();
 			});
 	}.bind(this));

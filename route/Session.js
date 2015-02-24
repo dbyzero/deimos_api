@@ -33,8 +33,10 @@ Route_Session.prototype.addRoute = function(server) {
 		res.setHeader('Access-Control-Allow-Methods','DELETE');
 		DAO_Session.remove({'gamearea':decodeURI(req.params.gamearea)}, function(err) {
 			if(err) throw err;
-			console.log('Cleaning session linked to game area ' + req.params.gamearea);
+			console.log('Cleaning session linked to game area '.bold + req.params.gamearea.yellow.bold);
 		});
+		res.end();
+		return next();
 	}.bind(this));
 }
 

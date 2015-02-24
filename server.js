@@ -43,9 +43,14 @@ mongoose.connect('mongodb://localhost:27017/deimos_test',function(err){
 
 	//for log purpose
 	server.use(function(req,res,next){
-		console.log(req.url);
+		// console.log(req.headers);
+		console.log(req.method + ' ' + req.url);
+		console.log(req.params);
+		// console.log('Kepp alive : '+req.isKeepAlive());
+		res.setHeader('Connection','close');
 		return next();
 	});
+
 	new Route_Teapot().addRoute(server);
 	new Route_Account().addRoute(server);
 	new Route_Avatar().addRoute(server);
@@ -54,6 +59,12 @@ mongoose.connect('mongodb://localhost:27017/deimos_test',function(err){
 	new Route_GameArea().addRoute(server);
 	new Route_Session().addRoute(server);
 
+	//close all connextions
+	server.use(function(req,res,next){
+		res.end();
+		return next();
+	});
+	
 	//starting server
 	server.listen(10081, function() {
 		console.log('%s listening at %s', server.name.yellow.bold, server.url.yellow.bold);

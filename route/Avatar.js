@@ -29,8 +29,44 @@ Route_Avatar.prototype.addRoute = function(server) {
 					throw err;
 				}
 			).end(function() {
-				next();
+				return next();
 			});
+
+
+	//POST /account/poisition/:x/:y/:orientation
+	//Register a client with a Account/Password. Return the sessionid
+	server.post('/'+this.collection+'/:id/position/:x/:y/:orientation', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','POST');
+		DAO_Avatar.findOne({id:req.params.id}).exec()
+			//check if account exist
+			.then(function(result){
+				if(result == null) {
+					res.send(404,'Unknow avatar')
+				}
+				DAO_Avatar.update({id:req.params.id},
+				{
+					'position':{
+						'x':parseInt(req.params.x),
+						'y':parseInt(req.params.y)
+					},
+					'animation':{
+						'direction':req.params.orientation
+					}
+				},
+				{
+					'strict':false
+				},
+				function(err,nbr,result){
+					if(nbr === 1 ) {
+						res.send(200,result);
+					} else {
+						//not possible to reach ?
+						res.send(404,result);
+					}
+					return next();
+				});
+			},function(err){throw err;})
+	});
 	}.bind(this));
 }
 

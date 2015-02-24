@@ -55,6 +55,8 @@ Route_Abstract.prototype.addRoute = function(server) {
 						res.send(404,'ID not found');
 						return next();
 					}
+					res.end();
+					return next();
 				}.bind(this),
 				function(err){
 					throw err;
