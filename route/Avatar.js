@@ -76,22 +76,22 @@ Route_Avatar.prototype.addRoute = function(server) {
 		res.setHeader('Access-Control-Allow-Methods','POST');
 		DAO_Avatar.findOne({id:req.params.id}).exec()
 			//check if avatar exist
-			.then(function(result){
+			.then(function(resultAvatar){
 				//find avatar ?
-				if(result == null) {
+				if(resultAvatar == null) {
 					res.send(404,'Unknow avatar')
 				}
 				//need to recreate an empty inventory ?
-				if(!Array.isArray(result.inventory)) {
-					result.inventory = new Array(56);
+				if(!Array.isArray(resultAvatar.inventory)) {
+					resultAvatar.inventory = new Array(56);
 				}
 				//we try to find an empty space
 				var _added = false;
-				for(key in result.inventory) {
+				for(key in resultAvatar.inventory) {
 					//got it ?
-					if(result.inventory[key] === null || result.inventory[key] === undefined) {
+					if(resultAvatar.inventory[key] === null || resultAvatar.inventory[key] === undefined) {
 						//put new item !
-						result.inventory[key] = {
+						resultAvatar.inventory[key] = {
 							id:req.params.templateid,
 							rgba:req.params.color,
 							type:req.params.type
@@ -102,13 +102,13 @@ Route_Avatar.prototype.addRoute = function(server) {
 				}
 				//if inventory is full..
 				if(!_added) {
-					res.send(403,"Inventory is full");
+					res.send(304,"Inventory is full");
 					res.end();
 				}
 				//or update avatar inventory
 				DAO_Avatar.update({id:req.params.id},
 				{
-					'inventory':result.inventory
+					'inventory':resultAvatar.inventory
 				},
 				{
 					'strict':false
@@ -116,11 +116,7 @@ Route_Avatar.prototype.addRoute = function(server) {
 				//when done send the answer
 				function(err,nbr,result){
 					if(nbr === 1 ) {
-						res.send(200,result);
-						res.end();
-					} else {
-						//not possible to reach ?
-						res.send(404,result);
+						res.send(200,resultAvatar.inventory);
 						res.end();
 					}
 					return next();
