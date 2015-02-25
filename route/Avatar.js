@@ -31,6 +31,7 @@ Route_Avatar.prototype.addRoute = function(server) {
 			).end(function() {
 				return next();
 			});
+	}.bind(this));
 
 
 	//POST /account/poisition/:x/:y/:orientation
@@ -38,7 +39,7 @@ Route_Avatar.prototype.addRoute = function(server) {
 	server.post('/'+this.collection+'/:id/position/:x/:y/:orientation', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','POST');
 		DAO_Avatar.findOne({id:req.params.id}).exec()
-			//check if account exist
+			//check if avatar exist
 			.then(function(result){
 				if(result == null) {
 					res.send(404,'Unknow avatar')
@@ -67,7 +68,65 @@ Route_Avatar.prototype.addRoute = function(server) {
 				});
 			},function(err){throw err;})
 	});
-	}.bind(this));
+
+
+	//POST /account/poisition/:x/:y/:orientation
+	//Register a client with a Account/Password. Return the sessionid
+	server.post('/'+this.collection+'/:id/additem/:templateid/:color/:type', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','POST');
+		DAO_Avatar.findOne({id:req.params.id}).exec()
+			//check if avatar exist
+			.then(function(result){
+				//find avatar ?
+				if(result == null) {
+					res.send(404,'Unknow avatar')
+				}
+				//need to recreate an empty inventory ?
+				if(!Array.isArray(result.inventory)) {
+					result.inventory = new Array(56);
+				}
+				//we try to find an empty space
+				var _added = false;
+				for(key in result.inventory) {
+					//got it ?
+					if(result.inventory[key] === null || result.inventory[key] === undefined) {
+						//put new item !
+						result.inventory[key] = {
+							id:req.params.templateid,
+							rgba:req.params.color,
+							type:req.params.type
+						}
+						_added = true;
+						break;
+					}
+				}
+				//if inventory is full..
+				if(!_added) {
+					res.send(403,"Inventory is full");
+					res.end();
+				}
+				//or update avatar inventory
+				DAO_Avatar.update({id:req.params.id},
+				{
+					'inventory':result.inventory
+				},
+				{
+					'strict':false
+				},
+				//when done send the answer
+				function(err,nbr,result){
+					if(nbr === 1 ) {
+						res.send(200,result);
+						res.end();
+					} else {
+						//not possible to reach ?
+						res.send(404,result);
+						res.end();
+					}
+					return next();
+				});
+			},function(err){throw err;})
+	});
 }
 
 module.exports = Route_Avatar;

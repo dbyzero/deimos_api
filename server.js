@@ -45,7 +45,6 @@ mongoose.connect('mongodb://localhost:27017/deimos_test',function(err){
 	server.use(function(req,res,next){
 		// console.log(req.headers);
 		console.log(req.method + ' ' + req.url);
-		console.log(req.params);
 		// console.log('Kepp alive : '+req.isKeepAlive());
 		res.setHeader('Connection','close');
 		return next();
@@ -60,10 +59,10 @@ mongoose.connect('mongodb://localhost:27017/deimos_test',function(err){
 	new Route_Session().addRoute(server);
 
 	//close all connextions
-	server.use(function(req,res,next){
-		res.end();
-		return next();
-	});
+	// server.use(function(req,res,next){
+	// 	res.end();
+	// 	return next();
+	// });
 	
 	//starting server
 	server.listen(10081, function() {
