@@ -1,23 +1,18 @@
 {
-    "name": "webcraft-api",
-    "description": "An API to get static content for webcraft server.",
+    "name": "deimos-api",
+    "description": "An API to provide ressources to deimos project.",
     "version": "0.0.3",
     "repository": {
         "type": "git",
-        "url": "dbyzero@git.oopss.org:webcraft-api.git"
+        "url": "git@jupiter.oopss.net:/home/git/repo/deimos_api"
     },
     "author": "Cyril ALFARO (Dbyzero)",
-    "contributors": [
-    ],
-    "keywords": [
-        "webcraft"
-    ],
     "bugs": {
         "email": "cyril@dbyzero.com"
     },
     "directories": {
     },
-    "main": "server.js",
+    "main": "app.js",
     "engines": {
         "node": ">=0.10"
     },

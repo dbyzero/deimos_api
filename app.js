@@ -65,7 +65,7 @@ mongoose.connect('mongodb://localhost:27017/deimos_test',function(err){
 	// });
 	
 	//starting server
-	server.listen(10081, function() {
+	server.listen(1081, function() {
 		console.log('%s listening at %s', server.name.yellow.bold, server.url.yellow.bold);
 	});
 });
