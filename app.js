@@ -13,11 +13,11 @@ var Route_MonsterTemplate	= require('./route/MonsterTemplate.js');
 var DAO_Account				= require('./dao/Account.js');
 var DAO_Session				= require('./dao/Session.js');
 
-
+var config					= require('./config.js');
 
 //connect to bdd
 console.log('Connecting to database'.white);
-mongoose.connect('mongodb://localhost:27017/deimos_test',function(err){
+mongoose.connect(config.mongodbStringServer,function(err){
 
 	//clean sessions
 	DAO_Account.update({}, {'$unset':{'usedBySession':''}},function(err,result){
@@ -35,7 +35,7 @@ mongoose.connect('mongodb://localhost:27017/deimos_test',function(err){
 	//create server
 	var server = restify.createServer({
 		'handleUpgrades':true,
-		'name':'Webcraft API'
+		'name':'Deimos API'
 	});
 
 	//for curl purpose
@@ -65,7 +65,7 @@ mongoose.connect('mongodb://localhost:27017/deimos_test',function(err){
 	// });
 	
 	//starting server
-	server.listen(1081, function() {
+	server.listen(config.port, function() {
 		console.log('%s listening at %s', server.name.yellow.bold, server.url.yellow.bold);
 	});
 });
