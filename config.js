@@ -2,6 +2,10 @@ var config = {
 	'localhost': {
 		'mongodbStringServer' : 'mongodb://localhost:27017/deimos_test',
 		'port' : 1081
+	},
+	'docker': {
+		'mongodbStringServer' : 'mongodb://localhost:27017/deimos_test',
+		'port' : 80
 	}
 };
 
