@@ -1,0 +1,18 @@
+{ "_id" : { "$oid" : "52444317c51a4a007c90aec8" }, "id" : 1, "login" : "half", "password" : "dbyzero" }
+{ "_id" : { "$oid" : "524bf12c3d78599723ace7a9" }, "id" : 2, "login" : "test", "password" : "dbyzero" }
+{ "id" : 12, "login" : "Monsieur Chat", "password" : "toto", "_id" : { "$oid" : "538dee2810ee79353170625f" }, "__v" : 0 }
+{ "__v" : 0, "_id" : { "$oid" : "538deecb900f64d43163759a" }, "id" : 13, "login" : "dbyzero", "password" : "f71dbe52628a3f83a77ab494817525c6" }
+{ "__v" : 0, "_id" : { "$oid" : "538df2a4e6150e4036b2d3bb" }, "id" : 14, "login" : "toto", "password" : "f71dbe52628a3f83a77ab494817525c6" }
+{ "id" : 15, "login" : "stephane", "password" : "f71dbe52628a3f83a77ab494817525c6", "_id" : { "$oid" : "538df89a7b2396fe41a54d0d" }, "__v" : 0 }
+{ "id" : 16, "login" : "totot", "password" : "f71dbe52628a3f83a77ab494817525c6", "_id" : { "$oid" : "538dfdf4ff3a4eac4b12ed2a" }, "__v" : 0 }
+{ "id" : 17, "login" : "dbyzero2", "password" : "f71dbe52628a3f83a77ab494817525c6", "_id" : { "$oid" : "538f351e1475f93a2def2b15" }, "__v" : 0 }
+{ "id" : 18, "login" : "dbyzero3", "password" : "f71dbe52628a3f83a77ab494817525c6", "_id" : { "$oid" : "538f353aca6f246b2dd95acc" }, "__v" : 0 }
+{ "id" : 19, "login" : "asd", "password" : "7815696ecbf1c96e6894b779456d330e", "_id" : { "$oid" : "538f356b899dc9042e31eb03" }, "__v" : 0 }
+{ "id" : 20, "login" : "asda", "password" : "adbf5a778175ee757c34d0eba4e932bc", "_id" : { "$oid" : "538f3617a74209b92e632112" }, "__v" : 0 }
+{ "id" : 21, "login" : "asdaa", "password" : "4fa09587527dcd403cddef3e71b88a41", "_id" : { "$oid" : "538f38ede067da4d304e6487" }, "__v" : 0 }
+{ "id" : 22, "login" : "Marine", "password" : "f71dbe52628a3f83a77ab494817525c6", "_id" : { "$oid" : "53910f97c7f245dc56682e5f" }, "__v" : 0 }
+{ "__v" : 0, "_id" : { "$oid" : "53a7f7bb1bb5751f1ce61637" }, "id" : 23, "login" : "floflo", "password" : "f71dbe52628a3f83a77ab494817525c6" }
+{ "__v" : 0, "_id" : { "$oid" : "53b95d80b0267a29275516be" }, "id" : 24, "login" : "lolo", "password" : "f71dbe52628a3f83a77ab494817525c6" }
+{ "id" : 25, "login" : "Teseur", "password" : "accc9105df5383111407fd5b41255e23", "_id" : { "$oid" : "53e0bd7c3c2ae58837b518f7" }, "__v" : 0 }
+{ "id" : 26, "login" : "test1", "password" : "c4ca4238a0b923820dcc509a6f75849b", "_id" : { "$oid" : "53e60b63d4c02f801da3eb6c" }, "__v" : 0 }
+{ "__v" : 0, "_id" : { "$oid" : "53f4980528f6d7f8183ab2a7" }, "id" : 27, "login" : "elo", "password" : "a1d7dfb5eb8d81498eec33bc78f6a58a" }

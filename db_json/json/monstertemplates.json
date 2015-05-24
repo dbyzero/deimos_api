@@ -1,0 +1,1 @@
+{ "_id" : { "$oid" : "547336173d785959138b4567" }, "damage" : 10, "deltashow" : { "x" : 14, "y" : 29 }, "hp" : 31, "id" : 1, "mass" : 5, "name" : "Smoogy", "size" : { "x" : 29, "y" : 21 }, "skin" : "slime" }
