@@ -44,7 +44,7 @@ Route_Account.prototype.addRoute = function(server) {
 			.then(function(result){
 				if(result != null) {
 					if(!!result.usedBySession) {
-						res.send(403,'Already used');
+						res.send(403,{'error':'already_used','sessionid':result.usedBySession});
 						return next();
 					}
 					if(req.params.password !== result.password) {
@@ -61,7 +61,7 @@ Route_Account.prototype.addRoute = function(server) {
 			//we are in the DAO_Session promise 
 			.then(function(result){
 				if(result != null) {
-					res.send(403,'Already used');
+					res.send(403,{'error':'already_used','sessionid':result.id});
 					return next();
 				}
 				//else we register the account and return the session id
