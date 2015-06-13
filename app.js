@@ -9,6 +9,7 @@ var Route_Session			= require('./route/Session.js');
 var Route_GameArea			= require('./route/GameArea.js');
 var Route_ItemTemplate		= require('./route/ItemTemplate.js');
 var Route_MonsterTemplate	= require('./route/MonsterTemplate.js');
+var Route_Level				= require('./route/Level.js');
 
 var DAO_Account				= require('./dao/Account.js');
 var DAO_Session				= require('./dao/Session.js');
@@ -41,6 +42,9 @@ mongoose.connect(config.mongodbStringServer,function(err){
 	//for curl purpose
 	server.pre(restify.pre.userAgentConnection());
 
+	//adding body parser
+	server.use(restify.bodyParser({ mapParams: true }));
+
 	//for log purpose
 	server.use(function(req,res,next){
 		// console.log(req.headers);
@@ -57,6 +61,7 @@ mongoose.connect(config.mongodbStringServer,function(err){
 	new Route_MonsterTemplate().addRoute(server);
 	new Route_GameArea().addRoute(server);
 	new Route_Session().addRoute(server);
+	new Route_Level().addRoute(server);
 
 	//close all connextions
 	// server.use(function(req,res,next){

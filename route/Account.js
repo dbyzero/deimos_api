@@ -35,6 +35,21 @@ Route_Account.prototype.addRoute = function(server) {
 			});
 	}.bind(this));
 
+	server.post('/'+this.collection+'/registerbytoken/:sessionid', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','POST');
+		DAO_Session.findOne({id:req.params.sessionid}).exec()
+			//check if account exist
+			.then(function(result){
+				if(result != null) {
+					res.send(200,{account:result.account });
+					return next();
+				} else {
+					res.send(403,'Bad token');
+					return next();
+				}
+			},function(err){throw err;})
+	});
+
 	//POST /account/register/:account/:password
 	//Register a client with a Account/Password. Return the sessionid
 	server.post('/'+this.collection+'/register/:account/:password', function(req,res,next){
