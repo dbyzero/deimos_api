@@ -13,6 +13,25 @@ inherit(Route_Session,Route_Abstract);
 //adding /session/register/:ip/:account/:avatar
 Route_Session.prototype.addRoute = function(server) {
 	Route_Session._super.prototype.addRoute.call(this,server);
+
+	//check if session exists
+	server.get('/'+this.collection+'/check/:login/:id', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','GET');
+		DAO_Session.findOne({id:req.params.id,account:req.params.login}).exec()
+			.then(function(result){
+				if(result != null) {
+					res.send(200);
+					return next();
+				} else {
+					res.send(404,'Unknow session');
+					return next();
+				}
+			},function(err){
+				throw err;
+			});
+	}.bind(this));
+
+	//unregister session
 	server.del('/'+this.collection+'/unregister/:id', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','DELETE');
 		DAO_Session.findOne({id:req.params.id}).exec()
@@ -29,11 +48,13 @@ Route_Session.prototype.addRoute = function(server) {
 				throw err;
 			});
 	}.bind(this));
-	server.del('/'+this.collection+'/clean/:gamearea', function(req,res,next){
+
+	//clear session connected to a specified level
+	server.del('/'+this.collection+'/clean/:level', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','DELETE');
-		DAO_Session.remove({'gamearea':decodeURI(req.params.gamearea)}, function(err) {
+		DAO_Session.remove({'gamearea':decodeURI(req.params.level)}, function(err) {
 			if(err) throw err;
-			console.log('Cleaning session linked to game area '.bold + req.params.gamearea.yellow.bold);
+			console.log('Cleaning session linked to game area '.bold + req.params.level.yellow.bold);
 		});
 		res.end();
 		return next();
