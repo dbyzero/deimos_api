@@ -93,6 +93,37 @@ Route_Account.prototype.addRoute = function(server) {
 				});
 			},function(err){throw err;})
 	});
+
+	//POST /account/register/:account/:password
+	//Register a client with a Account/Password. Return the sessionid
+	server.post('/'+this.collection+'/create/:account/:password/:mail', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','POST');
+		DAO_Account.findOne({login:req.params.account},'+usedBySession +password').exec()
+			//check if account exist
+			.then(function(result){
+				if(result !== null) {
+					res.send(401,{'error':'user_exist'});
+					return next();
+				}
+				DAO_Account.findOne({},{id:true},{sort:{id: -1}}).exec()
+					.then(function(result) {
+						var account = new DAO_Account();
+						account.id = (result.id + 1),
+						account.login = req.params.account;
+						account.password = req.connection.password;
+						account.mail = req.params.mail;
+						account.save(function(err, result, numberAffected){
+							if(err) throw err;
+							res.send(200,{accountid:result.id });
+							return next();
+						});
+					},function(err){
+						throw err;
+					})
+			},function(err){
+				throw err;
+			});
+	});
 }
 
 module.exports = Route_Account;

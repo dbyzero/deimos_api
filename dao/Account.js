@@ -4,7 +4,8 @@ var accountSchema = mongoose.Schema({
 	id : 			{ type:Number, unique:true },
 	login : 		{ type:String, unique:true, index:true, trim:true },
 	password : 		{ type:String, select:false, trim:true },
-	usedBySession : { type:String, select:false }
+	usedBySession : { type:String, select:false },
+	mail : 			{ type:String, select:true }
 }, {
 	_id:true
 });
