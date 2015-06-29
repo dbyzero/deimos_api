@@ -110,7 +110,7 @@ Route_Account.prototype.addRoute = function(server) {
 						var account = new DAO_Account();
 						account.id = (result.id + 1),
 						account.login = req.params.account;
-						account.password = req.connection.password;
+						account.password = req.params.password;
 						account.mail = req.params.mail;
 						account.save(function(err, result, numberAffected){
 							if(err) throw err;
