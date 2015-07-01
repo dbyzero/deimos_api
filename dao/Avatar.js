@@ -2,27 +2,39 @@ var mongoose = require('mongoose');
 
 var accountSchema = mongoose.Schema({
 	id 						: { type:Number, unique:true },
-	mass					: { type:Number },
-	move_speed				: { type:Number },
-	jump_speed				: { type:Number },
+	name 					: { type:String, unique:true },
 	account_name			: { type:String, trim:true },
-	mental					: { type:Number },
-	magic					: { type:Number },
-	hp						: { type:Number },
-	strengh					: { type:Number },
-	agility					: { type:Number },
-	willpower				: { type:Number },
-	intelligence			: { type:Number },
-	focusing				: { type:Number },
+	onGameArea				: {},
+
+	skin					: { type:String },
 	deltashow				: { type:Object },
+	size					: { type:Object },
+	rgba					: { type:String },
+	animation				: { type:Object },
+
+	jump_speed				: { type:Number },
+	move_speed				: { type:Number },
+	position				: { type:Object },
+	velocity				: { type:Object },
+	acceleration			: { type:Object },
+	mass					: { type:Number },
+
 	item_slot_head			: { type:Object },
 	item_slot_chest			: { type:Object },
 	item_slot_foot			: { type:Object },
 	item_slot_left_hand		: { type:Object },
 	item_slot_right_hand	: { type:Object },
-	inventory				: { type:Object },
 	titleOwned				: { type:Object },
-	titleSelected			: { type:String, trim:true }
+	titleSelected			: { type:String },
+	inventory				: { type:Object },
+
+	strengh					: { type:Number },
+	focus					: { type:Number },
+	endurance				: { type:Number },
+	training				: { type:Number },
+	willpower				: { type:Number },
+	hp						: { type:Number },
+	will					: { type:Number }
 }, {
 	_id:true
 });
