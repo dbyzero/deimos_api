@@ -135,57 +135,67 @@ Route_Avatar.prototype.addRoute = function(server) {
 					res.send(401,{'error':'avatar_exist'});
 					return next();
 				}
+				console.log(req.params);
 				DAO_Avatar.findOne({},{id:true},{sort:{id: -1}}).exec()
 					.then(function(result) {
-						var avatar = new DAO_Avatar();
+						try {
+							var avatar = new DAO_Avatar();
 
-						//owner info
-						avatar.id = (result.id + 1),
-						avatar.name = req.params.avatarname;
-						avatar.account_name = req.params.account;
-						avatar.onGameArea = null;
+							//owner info
+							console.log('ok');
+							avatar.id = (result.id + 1),
+							console.log('ok');
+							avatar.name = req.params.avatarname;
+							console.log('ok');
+							avatar.account_name = req.params.account;
+							console.log('ok');
+							avatar.onGameArea = null;
+							console.log('ok');
 
-						//draw info
-						avatar.skin = 'avatar';
-						avatar.deltashow = {x:25,y:40};
-						avatar.size = {x:50,y:20};
-						avatar.rgba = '#FFFFFFFF'
-						avatar.animation = {direction:'left'};
+							//draw info
+							avatar.skin = 'avatar';
+							avatar.deltashow = {x:25,y:40};
+							avatar.size = {x:50,y:20};
+							avatar.rgba = '#FFFFFFFF'
+							avatar.animation = {direction:'left'};
 
-						//move metrics
-						avatar.jump_speed = 700;
-						avatar.move_speed = 350;
-						avatar.position = {x:0,y:0};
-						avatar.velocity = {x:0,y:0};
-						avatar.acceleration = {x:0,y:0};
-						avatar.mass = 1;
+							//move metrics
+							avatar.jump_speed = 700;
+							avatar.move_speed = 350;
+							avatar.position = {x:0,y:0};
+							avatar.velocity = {x:0,y:0};
+							avatar.acceleration = {x:0,y:0};
+							avatar.mass = 1;
 
-						//inventory
-						avatar.item_slot_chest = null;
-						avatar.item_slot_foot = null;
-						avatar.item_slot_head = null;
-						avatar.item_slot_left_hand = null;
-						avatar.item_slot_right_hand = null;
-						avatar.titleOwned = [];
-						avatar.titleSelected = null;
-						avatar.inventory = [];
+							//inventory
+							avatar.item_slot_chest = null;
+							avatar.item_slot_foot = null;
+							avatar.item_slot_head = null;
+							avatar.item_slot_left_hand = null;
+							avatar.item_slot_right_hand = null;
+							avatar.titleOwned = [];
+							avatar.titleSelected = null;
+							avatar.inventory = [];
 
-						//attributs
-						avatar.strengh = req.params.strengh || 0;
-						avatar.focus = req.params.focus || 0;
-						avatar.endurance = req.params.endurance || 0;
-						avatar.training = req.params.training || 0;
-						avatar.willpower = req.params.willpower || 0;
-						avatar.hp = req.params.hp || 1;
-						avatar.will = req.params.will || 0;
+							//attributs
+							avatar.strengh = req.params.strengh || 0;
+							avatar.focus = req.params.focus || 0;
+							avatar.endurance = req.params.endurance || 0;
+							avatar.training = req.params.training || 0;
+							avatar.willpower = req.params.willpower || 0;
+							avatar.hp = req.params.hp || 1;
+							avatar.will = req.params.will || 0;
 
-						console.log(avatar);
+							console.log(avatar);
 
-						avatar.save(function(err, result, numberAffected){
-							if(err) throw err;
-							res.send(200,{avatarid:result.id });
-							return next();
-						});
+							avatar.save(function(err, result, numberAffected){
+								if(err) throw err;
+								res.send(200,{avatarid:result.id });
+								return next();
+							});
+						} catch (err) {
+							throw err;
+						}
 					},function(err){
 						throw err;
 					});

@@ -29,11 +29,15 @@ var accountSchema = mongoose.Schema({
 	inventory				: { type:Object },
 
 	strengh					: { type:Number },
-	focus					: { type:Number },
 	endurance				: { type:Number },
+	focus					: { type:Number },
 	training				: { type:Number },
 	willpower				: { type:Number },
+
+	damage					: { type:Number },
 	hp						: { type:Number },
+	willRegen				: { type:Number },
+	skillBonus				: { type:Number },
 	will					: { type:Number }
 }, {
 	_id:true
