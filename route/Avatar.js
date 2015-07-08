@@ -135,22 +135,20 @@ Route_Avatar.prototype.addRoute = function(server) {
 					res.send(401,{'error':'avatar_exist'});
 					return next();
 				}
-				console.log(req.params);
 				DAO_Avatar.findOne({},{id:true},{sort:{id: -1}}).exec()
 					.then(function(result) {
 						try {
 							var avatar = new DAO_Avatar();
+							if(result === null) {
+								avatar.id = 1;
+							} else {
+								avatar.id = (result.id + 1);
+							}
 
 							//owner info
-							console.log('ok');
-							avatar.id = (result.id + 1),
-							console.log('ok');
 							avatar.name = req.params.avatarname;
-							console.log('ok');
 							avatar.account_name = req.params.account;
-							console.log('ok');
 							avatar.onGameArea = null;
-							console.log('ok');
 
 							//draw info
 							avatar.skin = 'avatar';
@@ -183,10 +181,12 @@ Route_Avatar.prototype.addRoute = function(server) {
 							avatar.endurance = req.params.endurance || 0;
 							avatar.training = req.params.training || 0;
 							avatar.willpower = req.params.willpower || 0;
+
 							avatar.hp = req.params.hp || 1;
 							avatar.will = req.params.will || 0;
-
-							console.log(avatar);
+							avatar.damage = req.params.damage || 0;
+							avatar.skillBonus = req.params.skillBonus || 0;
+							avatar.willRegen = req.params.willRegen || 0;
 
 							avatar.save(function(err, result, numberAffected){
 								if(err) throw err;
