@@ -190,7 +190,7 @@ Route_Avatar.prototype.addRoute = function(server) {
 
 							avatar.save(function(err, result, numberAffected){
 								if(err) throw err;
-								res.send(200,{avatarid:result.id });
+								res.send(200,avatar);
 								return next();
 							});
 						} catch (err) {
