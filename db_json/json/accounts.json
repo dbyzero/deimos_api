@@ -16,3 +16,8 @@
 { "id" : 25, "login" : "Teseur", "password" : "accc9105df5383111407fd5b41255e23", "_id" : { "$oid" : "53e0bd7c3c2ae58837b518f7" }, "__v" : 0 }
 { "id" : 26, "login" : "test1", "password" : "c4ca4238a0b923820dcc509a6f75849b", "_id" : { "$oid" : "53e60b63d4c02f801da3eb6c" }, "__v" : 0 }
 { "__v" : 0, "_id" : { "$oid" : "53f4980528f6d7f8183ab2a7" }, "id" : 27, "login" : "elo", "password" : "a1d7dfb5eb8d81498eec33bc78f6a58a" }
+{ "mail" : "cyril@dbyzero.com", "login" : "lolo2", "id" : 999, "_id" : { "$oid" : "559135bfe10783c702c0bf4a" }, "__v" : 0 }
+{ "mail" : "cyril@dbyzero.com", "login" : "lolo3", "id" : 1000, "_id" : { "$oid" : "559156fe99ec43254303117f" }, "__v" : 0 }
+{ "mail" : "cyril@dbyzero.com", "login" : "lolo4", "id" : 1001, "_id" : { "$oid" : "5591570e99ec432543031180" }, "__v" : 0 }
+{ "mail" : "cyril@dbyzero.com", "login" : "lolo5", "id" : 1002, "_id" : { "$oid" : "55915726f078e0ac44dfd411" }, "__v" : 0 }
+{ "mail" : "undefined", "password" : "undefined", "login" : "undefined", "id" : 1003, "_id" : { "$oid" : "5595cf78af0468d6663d70b7" }, "__v" : 0 }

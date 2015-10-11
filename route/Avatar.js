@@ -154,7 +154,7 @@ Route_Avatar.prototype.addRoute = function(server) {
 							avatar.skin = 'avatar';
 							avatar.deltashow = {x:25,y:40};
 							avatar.size = {x:50,y:20};
-							avatar.rgba = '#FFFFFFFF'
+							avatar.rgba = req.params.color || '#000000';
 							avatar.animation = {direction:'left'};
 
 							//move metrics
