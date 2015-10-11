@@ -1,27 +1,29 @@
 {
-    "name": "deimos-api",
-    "description": "An API to provide ressources to deimos project.",
-    "version": "0.0.3",
-    "repository": {
-        "type": "git",
-        "url": "git@jupiter.oopss.net:/home/git/repo/deimos_api"
-    },
-    "author": "Cyril ALFARO (Dbyzero)",
-    "bugs": {
-        "email": "cyril@dbyzero.com"
-    },
-    "directories": {
-    },
-    "main": "app.js",
-    "engines": {
-        "node": ">=0.10"
-    },
-    "dependencies": {
-        "restify": "~2",
-        "mongoose": "~3",
-        "colors": "~1",
-        "crypto-js": "~3",
-        "q": "~1",
-        "inherits": "~2"
-    }
+  "name": "deimos-api",
+  "description": "An API to provide ressources to deimos project.",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "git@jupiter.oopss.net:/home/git/repo/deimos_api"
+  },
+  "author": "Cyril ALFARO (Dbyzero)",
+  "bugs": {
+    "email": "cyril@dbyzero.com"
+  },
+  "directories": {},
+  "main": "app.js",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "restify": "~2",
+    "mongoose": "~3",
+    "colors": "~1",
+    "crypto-js": "~3",
+    "q": "~1",
+    "inherits": "~2"
+  },
+  "devDependencies": {
+    "eslinter": "^3.2.1"
+  }
 }
