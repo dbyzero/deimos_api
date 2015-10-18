@@ -35,6 +35,41 @@ Route_Account.prototype.addRoute = function(server) {
 			});
 	}.bind(this));
 
+	server.get('/'+this.collection+'s', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','GET');
+		DAO_Account.find({},{"_id":false,"__v":false}).lean().exec()
+			.then(function(result){
+				if(result != null) {
+					res.send(200,result);
+					return next();
+				} else {
+					res.send(404,'No account');
+					return next();
+				}
+			})
+			.then(null,function(err){
+				throw err;
+			});
+	}.bind(this));
+
+	//unregister session
+	server.del('/'+this.collection+'/del/:id', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','DELETE');
+		DAO_Account.findOne({id:req.params.id}).exec()
+			.then(function(result){
+				if(result != null) {
+					DAO_Account.remove({id:req.params.id}).exec();
+					res.send(204);
+					return next();
+				} else {
+					res.send(404,'Unknow account');
+					return next();
+				}
+			},function(err){
+				throw err;
+			});
+	}.bind(this));
+
 	server.post('/'+this.collection+'/registerbytoken/:sessionid', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','POST');
 		DAO_Session.findOne({id:req.params.sessionid}).exec()
@@ -54,7 +89,7 @@ Route_Account.prototype.addRoute = function(server) {
 	//Register a client with a Account/Password. Return the sessionid
 	server.post('/'+this.collection+'/register/:account/:password', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','POST');
-		DAO_Account.findOne({login:req.params.account},'+usedBySession +password').exec()
+		DAO_Account.findOne({login:req.params.account}).exec()
 			//check if account exist
 			.then(function(result){
 				if(result != null) {
@@ -73,7 +108,7 @@ Route_Account.prototype.addRoute = function(server) {
 					return next();
 				}
 			},function(err){throw err;})
-			//we are in the DAO_Session promise 
+			//we are in the DAO_Session promise
 			.then(function(result){
 				if(result != null) {
 					res.send(403,{'error':'already_used','sessionid':result.id});

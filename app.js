@@ -45,7 +45,8 @@ mongoose.connect(config.mongodbStringServer,function(err){
 	//adding body parser
 	server.use(restify.bodyParser({ mapParams: true }));
 
-	//for log purpose
+
+	//global changement
 	server.use(function(req,res,next){
 		// console.log(req.headers);
 		console.log(req.method + ' ' + req.url);
@@ -53,6 +54,10 @@ mongoose.connect(config.mongodbStringServer,function(err){
 		res.setHeader('Connection','close');
 		return next();
 	});
+
+	//addning CROS and accept OPTIONS method
+	server.use(restify.CORS());
+	server.use(restify.fullResponse());
 
 	new Route_Teapot().addRoute(server);
 	new Route_Account().addRoute(server);
@@ -63,14 +68,14 @@ mongoose.connect(config.mongodbStringServer,function(err){
 	new Route_Session().addRoute(server);
 	new Route_Level().addRoute(server);
 
-	//close all connextions
-	// server.use(function(req,res,next){
-	// 	res.end();
-	// 	return next();
-	// });
-	
+	//Log error
+	server.use(function(req,res,next,err){
+		console.log(err);
+	});
+
 	//starting server
 	server.listen(config.port, function() {
 		console.log('%s listening at %s', server.name.yellow.bold, server.url.yellow.bold);
 	});
+
 });
