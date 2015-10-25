@@ -6,7 +6,8 @@ var config = {
 	'docker': {
 		'mongodbStringServer' : 'mongodb://localhost:27017/deimos_test',
 		'port' : 80
-	}
+	},
+	'mode': 'debug'
 };
 
 var args = {};

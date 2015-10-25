@@ -21,14 +21,16 @@ console.log('Connecting to database'.white);
 mongoose.connect(config.mongodbStringServer,function(err){
 
 	//clean sessions
-	DAO_Account.update({}, {'$unset':{'usedBySession':''}},function(err,result){
-		if(err) throw err;
-		console.log('Account unlinked to session'.green);
-		DAO_Session.remove({}, function(err) {
+	if(config.mode !== 'debug') {
+		DAO_Account.update({}, {'$unset':{'usedBySession':''}},{'multi':true},function(err,result){
 			if(err) throw err;
-			console.log('Session cleaned'.green);
+			console.log('Account unlinked to session'.green);
+			DAO_Session.remove({}, function(err) {
+				if(err) throw err;
+				console.log('Session cleaned'.green);
+			});
 		});
-	});
+	}
 
 	if (err) throw err;
 	console.log('Connected!'.green.bold);

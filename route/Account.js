@@ -28,7 +28,7 @@ Route_Account.prototype.addRoute = function(server) {
 					}
 				},
 				function(err){
-					throw err;
+					next(err);
 				}
 			).end(function() {
 				next();
@@ -37,7 +37,7 @@ Route_Account.prototype.addRoute = function(server) {
 
 	server.get('/'+this.collection+'s', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','GET');
-		DAO_Account.find({},{"_id":false,"__v":false}).lean().exec()
+		DAO_Account.find({},{"_id":false,"__v":false}).sort('id').lean().exec()
 			.then(function(result){
 				if(result != null) {
 					res.send(200,result);
@@ -48,7 +48,7 @@ Route_Account.prototype.addRoute = function(server) {
 				}
 			})
 			.then(null,function(err){
-				throw err;
+				next(err);
 			});
 	}.bind(this));
 
@@ -66,7 +66,7 @@ Route_Account.prototype.addRoute = function(server) {
 					return next();
 				}
 			},function(err){
-				throw err;
+				next(err);
 			});
 	}.bind(this));
 
@@ -82,13 +82,14 @@ Route_Account.prototype.addRoute = function(server) {
 					res.send(403,'Bad token');
 					return next();
 				}
-			},function(err){throw err;})
+			},function(err){next(err);})
 	});
 
 	//POST /account/register/:account/:password
 	//Register a client with a Account/Password. Return the sessionid
 	server.post('/'+this.collection+'/register/:account/:password', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','POST');
+		var sessionid = null;
 		DAO_Account.findOne({login:req.params.account}).exec()
 			//check if account exist
 			.then(function(result){
@@ -107,33 +108,45 @@ Route_Account.prototype.addRoute = function(server) {
 					res.send(403,'Bad credentials')
 					return next();
 				}
-			},function(err){throw err;})
-			//we are in the DAO_Session promise
+			},function(err){next(err);})
+			//we are in the DAO_Session promise and create session
 			.then(function(result){
 				if(result != null) {
 					res.send(403,{'error':'already_used','sessionid':result.id});
 					return next();
 				}
 				//else we register the account and return the session id
-				var sessionid = cryptojs.MD5(req.params.account + new Date() + '!!secret_string!!!!!!!!' + parseInt(Math.random()*0, 100000))+'';
+				sessionid = cryptojs.MD5(req.params.account + new Date() + '!!secret_string!!!!!!!!' + parseInt(Math.random()*0, 100000))+'';
 				var session = new DAO_Session();
 				session.id = sessionid;
 				session.ip = req.connection.remoteAddress;
 				session.account = req.params.account;
 				session.avatar = null;
 				session.save(function(err, result, numberAffected){
-					if(err) throw err;
-					res.send(200,{sessionid:result.id });
-					return next();
+					if(err) next(err);;
+					return result;
 				});
-			},function(err){throw err;})
+			},function(err){next(err);})
+			//we are in dao save session promise
+			.then(function(){
+				DAO_Account.update(
+					{'login':req.params.account},
+					{'usedBySession':sessionid},
+					{'strict':false},
+					function(err,nbr,resultSaveAvatar){
+						if(nbr === 1 ) {
+							res.send(200,{'sessionid':sessionid });
+						}
+						return next();
+					});
+			},function(err){next(err);})
 	});
 
 	//POST /account/register/:account/:password
 	//Register a client with a Account/Password. Return the sessionid
 	server.post('/'+this.collection+'/create/:account/:password/:mail', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','POST');
-		DAO_Account.findOne({login:req.params.account},'+usedBySession +password').exec()
+		DAO_Account.findOne({login:req.params.account}).exec()
 			//check if account exist
 			.then(function(result){
 				if(result !== null) {
@@ -148,15 +161,39 @@ Route_Account.prototype.addRoute = function(server) {
 						account.password = req.params.password;
 						account.mail = req.params.mail;
 						account.save(function(err, result, numberAffected){
-							if(err) throw err;
+							if(err) next(err);;
 							res.send(200,{accountid:result.id });
 							return next();
 						});
 					},function(err){
-						throw err;
+						if(err) next(err);
 					})
 			},function(err){
-				throw err;
+				if(err) next(err);
+			});
+	});
+
+	//POST /account/register/:account/:password
+	//Register a client with a Account/Password. Return the sessionid
+	server.post('/'+this.collection+'/update/:id', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','POST');
+		DAO_Account.findOne({id:req.params.id}).exec()
+			//check if account exist
+			.then(function(account){
+				if(account === null) {
+					res.send(404,{'error':'unknow_account'});
+					return next();
+				}
+				account.login = req.params.login;
+				account.password = req.params.password;
+				account.mail = req.params.mail;
+				account.save(function(err, result, numberAffected){
+					if(err) next(err);
+					res.send(200,{accountid:result.id });
+					return next();
+				});
+			},function(err){
+				next(err);;
 			});
 	});
 }
