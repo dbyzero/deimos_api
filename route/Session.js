@@ -53,9 +53,17 @@ Route_Session.prototype.addRoute = function(server) {
 		DAO_Session.findOne({id:req.params.id}).exec()
 			.then(function(result){
 				if(result != null) {
-					DAO_Session.remove({id:req.params.id}).exec();
-					res.send(204);
-					return next();
+					DAO_Session.remove({id:req.params.id}).exec()
+					.then(function() {
+							DAO_Account.update({usedBySession:req.params.id},{usedBySession:null},{'strict':false}).exec()
+							.then(function(){
+									res.send(204);
+							},function(err){
+								next(err);
+							})
+					},function(err) {
+						next(err);
+					})
 				} else {
 					res.send(404,'Unknow session');
 					return next();
