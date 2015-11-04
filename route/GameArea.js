@@ -73,12 +73,9 @@ Route_GameArea.prototype.addRoute = function(server) {
 			});
 	}.bind(this));
 
-	//POST /account/register/:account/:password
-	//Register a client with a Account/Password. Return the sessionid
 	server.post('/'+this.collection+'/create/:name', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','POST');
 		this.dao.findOne({name:req.params.name}).exec()
-			//check if account exist
 			.then(function(result){
 				if(result !== null) {
 					res.send(401,{'error':'gamearea_exist'});
@@ -86,7 +83,6 @@ Route_GameArea.prototype.addRoute = function(server) {
 				}
 				DAO_GameArea.findOne({},{id:true},{sort:{id: -1}}).exec()
 					.then(function(result) {
-						debugger;
 						var gamearea = new DAO_GameArea();
 						if(result === null) {
 							gamearea.id = 1;
