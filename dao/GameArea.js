@@ -3,7 +3,9 @@ var mongoose = require('mongoose');
 var accountSchema = mongoose.Schema({
 	id :			{ type:Number, unique:true },
 	name :			{ type:String, unique:true, index:true, trim:true },
-	content :		{ type:Object },
+	blocks :		{ type:Object },
+	width :		{ type:Number },
+	height :		{ type:Number },
 	regexUrl :		{ type:String, trim:true },
 	areaDomID :		{ type:String, trim:true }
 }, {

@@ -1,13 +1,13 @@
-{ "_id" : { "$oid" : "533ecb4061a41da67219d2b5" }, "attack" : null, "deltashow" : { "x" : 5, "y" : 0 }, "id" : 1, "kind" : "armR", "mass" : "10", "name" : "Arm Test right", "size" : { "x" : 17, "y" : 27 }, "skin" : "default_test" }
-{ "_id" : { "$oid" : "536746f93d785997618b4567" }, "attack" : null, "deltashow" : { "x" : 0, "y" : 0 }, "id" : 2, "kind" : "head", "mass" : "10", "name" : "Head Test", "size" : { "x" : 27, "y" : 26 }, "skin" : "default_test" }
-{ "_id" : { "$oid" : "53bd60b33d78595d638b4567" }, "attack" : null, "deltashow" : { "x" : 2, "y" : 0 }, "id" : 3, "kind" : "body", "mass" : "10", "name" : "Body Test", "size" : { "x" : 24, "y" : 27 }, "skin" : "default_test" }
-{ "_id" : { "$oid" : "53bd60c13d78595e638b4567" }, "attack" : null, "deltashow" : { "x" : 0, "y" : 5 }, "id" : 4, "kind" : "feet", "mass" : "10", "name" : "Feet Test", "size" : { "x" : 27, "y" : 18 }, "skin" : "default_test" }
-{ "_id" : { "$oid" : "53bddc3c3d7859f2088b4567" }, "attack" : null, "deltashow" : { "x" : 5, "y" : 0 }, "id" : 5, "kind" : "armL", "mass" : "10", "name" : "Arm Test left", "size" : { "x" : 17, "y" : 27 }, "skin" : "default_test" }
-{ "_id" : { "$oid" : "53bfbc8b3d785957208b4567" }, "attack" : { "t" : "p", "i" : 12, "c" : "#cc0000ff", "x" : 400, "y" : -500, "deltashow" : { "x" : 0, "y" : 0 }, "f" : 5 }, "deltashow" : { "x" : 5, "y" : 0 }, "id" : 6, "kind" : "armR", "mass" : "10", "name" : "Arm Armor Test right", "size" : { "x" : 17, "y" : 27 }, "skin" : "armor_test" }
-{ "_id" : { "$oid" : "53c930d93d78592c248b4567" }, "attack" : null, "deltashow" : { "x" : 5, "y" : 0 }, "id" : 7, "kind" : "armL", "mass" : "10", "name" : "Arm Armor Test left", "size" : { "x" : 17, "y" : 27 }, "skin" : "armor_test" }
-{ "_id" : { "$oid" : "53cb531f3d7859e7088b4567" }, "attack" : null, "deltashow" : { "x" : 0, "y" : 5 }, "id" : 8, "kind" : "feet", "mass" : "10", "name" : "Feet Armor Test left", "size" : { "x" : 27, "y" : 18 }, "skin" : "armor_test" }
-{ "_id" : { "$oid" : "53cb533a3d785994288b4567" }, "attack" : null, "deltashow" : { "x" : 2, "y" : 0 }, "id" : 9, "kind" : "body", "mass" : "10", "name" : "Body Armor Test left", "size" : { "x" : 27, "y" : 27 }, "skin" : "armor_test" }
-{ "_id" : { "$oid" : "53cb53493d7859eb088b4567" }, "attack" : 0, "deltashow" : { "x" : 1, "y" : 0 }, "id" : 10, "kind" : "head", "mass" : "10", "name" : "Head Armor Test left", "size" : { "x" : 25, "y" : 26 }, "skin" : "armor_test" }
-{ "_id" : { "$oid" : "543fd02d3d7859a8158b4567" }, "attack" : { "type" : "projectile", "projectile_id" : 13, "projectile_color" : "#cc0000ff", "initSpeedX" : 100, "initSpeedY" : 0, "frequency" : 50 }, "deltashow" : { "x" : 0, "y" : 0 }, "id" : 11, "kind" : "weapon", "mass" : "10", "name" : "Weapon Test", "size" : { "x" : 20, "y" : 22 }, "skin" : "weapon_test" }
-{ "_id" : { "$oid" : "545c18283d78597e088b4567" }, "damage" : 10, "deltashow" : { "x" : 0, "y" : 0 }, "id" : 12, "kind" : "projectile", "mass" : "10", "name" : "Chicken", "size" : { "x" : 20, "y" : 22 }, "skin" : "chick" }
-{ "_id" : { "$oid" : "54bda3963d7859fc49f67ae7" }, "damage" : 10, "deltashow" : { "x" : 0, "y" : 0 }, "id" : 13, "kind" : "projectile", "mass" : "0", "name" : "Chicken", "size" : { "x" : 20, "y" : 22 }, "skin" : "chick" }
+{ "_id" : { "$oid" : "533ecb4061a41da67219d2b5" }, "id" : 1, "name" : "Arm Test right", "skills" : [], "skin" : "default_test", "slot" : "armR" }
+{ "_id" : { "$oid" : "536746f93d785997618b4567" }, "id" : 2, "name" : "Head Test", "skills" : [], "skin" : "default_test", "slot" : "head" }
+{ "_id" : { "$oid" : "53bd60b33d78595d638b4567" }, "id" : 3, "name" : "Body Test", "skills" : [], "skin" : "default_test", "slot" : "body" }
+{ "_id" : { "$oid" : "53bd60c13d78595e638b4567" }, "id" : 4, "name" : "Feet Test", "skills" : [], "skin" : "default_test", "slot" : "feet" }
+{ "_id" : { "$oid" : "53bddc3c3d7859f2088b4567" }, "id" : 5, "name" : "Arm Test left", "skills" : [], "skin" : "default_test", "slot" : "armL" }
+{ "_id" : { "$oid" : "53bfbc8b3d785957208b4567" }, "id" : 6, "name" : "Arm Armor Test right", "skills" : [], "skin" : "armor_test", "slot" : "armR" }
+{ "_id" : { "$oid" : "53c930d93d78592c248b4567" }, "id" : 7, "name" : "Arm Armor Test left", "skills" : [], "skin" : "armor_test", "slot" : "armL" }
+{ "_id" : { "$oid" : "53cb531f3d7859e7088b4567" }, "id" : 8, "name" : "Feet Armor Test left", "skills" : [], "skin" : "armor_test", "slot" : "feet" }
+{ "_id" : { "$oid" : "53cb533a3d785994288b4567" }, "id" : 9, "name" : "Body Armor Test left", "skills" : [], "skin" : "armor_test", "slot" : "body" }
+{ "_id" : { "$oid" : "53cb53493d7859eb088b4567" }, "id" : 10, "name" : "Head Armor Test left", "skills" : [], "skin" : "armor_test", "slot" : "head" }
+{ "_id" : { "$oid" : "543fd02d3d7859a8158b4567" }, "id" : 11, "name" : "Weapon Test", "skills" : [], "skin" : "weapon_test", "slot" : "weapon" }
+{ "_id" : { "$oid" : "545c18283d78597e088b4567" }, "id" : 12, "name" : "Chicken", "skills" : [], "skin" : "chick", "slot" : "projectile" }
+{ "_id" : { "$oid" : "54bda3963d7859fc49f67ae7" }, "id" : 13, "name" : "Chicken", "skills" : [], "skin" : "chick", "slot" : "projectile" }

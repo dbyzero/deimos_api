@@ -35,23 +35,6 @@ Route_Account.prototype.addRoute = function(server) {
 			});
 	}.bind(this));
 
-	server.get('/'+this.collection+'s', function(req,res,next){
-		res.setHeader('Access-Control-Allow-Methods','GET');
-		DAO_Account.find({},{"_id":false,"__v":false}).sort('id').lean().exec()
-			.then(function(result){
-				if(result != null) {
-					res.send(200,result);
-					return next();
-				} else {
-					res.send(404,'No account');
-					return next();
-				}
-			})
-			.then(null,function(err){
-				next(err);
-			});
-	}.bind(this));
-
 	//unregister session
 	server.del('/'+this.collection+'/del/:id', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','DELETE');

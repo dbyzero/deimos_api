@@ -39,6 +39,20 @@ Route_Abstract.prototype.addRoute = function(server) {
 			});
 	}.bind(this));
 
+	server.get('/'+this.collection+'s', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','GET');
+		this.dao.find({},{"_id":false,"__v":false}).sort('id').lean().exec()
+			.then(function(result){
+				if(result != null) {
+					res.send(200,result);
+					return next();
+				}
+			})
+			.then(null,function(err){
+				next(err);
+			});
+	}.bind(this));
+
 	//DELETE {dao}/id
 	server.del('/'+this.collection+'/:id', function(req,res,next){
 		var searchObject = {}

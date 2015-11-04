@@ -146,47 +146,47 @@ Route_Avatar.prototype.addRoute = function(server) {
 							}
 
 							//owner info
-							avatar.name = req.params.avatarname;
-							avatar.account_name = req.params.account;
+							avatar.name = req.params.name;
+							avatar.account_name = req.params.account_name;
 							avatar.onGameArea = null;
 
 							//draw info
 							avatar.skin = 'avatar';
-							avatar.deltashow = {x:25,y:40};
-							avatar.size = {x:50,y:20};
-							avatar.rgba = req.params.color || '#000000';
+							avatar.deltashow = req.params.deltashow;
+							avatar.size = req.params.size;
+							avatar.rgba = req.params.rgba;
 							avatar.animation = {direction:'left'};
 
 							//move metrics
 							avatar.jump_speed = 700;
 							avatar.move_speed = 350;
-							avatar.position = {x:0,y:0};
-							avatar.velocity = {x:0,y:0};
-							avatar.acceleration = {x:0,y:0};
-							avatar.mass = 1;
+							avatar.mass = req.params.mass;
 
 							//inventory
-							avatar.item_slot_chest = null;
-							avatar.item_slot_foot = null;
-							avatar.item_slot_head = null;
-							avatar.item_slot_left_hand = null;
-							avatar.item_slot_right_hand = null;
-							avatar.titleOwned = [];
-							avatar.titleSelected = null;
-							avatar.inventory = [];
+							avatar.item_slot_chest = req.params.item_slot_chest || {};
+							avatar.item_slot_foot = req.params.item_slot_foot || {};
+							avatar.item_slot_head = req.params.item_slot_head || {};
+							avatar.item_slot_head2 = req.params.item_slot_head2 || {};
+							avatar.item_slot_left_hand = req.params.item_slot_left_hand || {};
+							avatar.item_slot_right_hand = req.params.item_slot_right_hand || {};
+							avatar.inventory = req.params.inventory || [];
 
 							//attributs
-							avatar.strengh = req.params.strengh || 0;
-							avatar.focus = req.params.focus || 0;
-							avatar.endurance = req.params.endurance || 0;
-							avatar.training = req.params.training || 0;
-							avatar.willpower = req.params.willpower || 0;
+							avatar.strengh = req.params.strengh;
+							avatar.focus = req.params.focus;
+							avatar.endurance = req.params.endurance;
+							avatar.training = req.params.training;
+							avatar.willpower = req.params.willpower;
 
-							avatar.hp = req.params.hp || 1;
-							avatar.will = req.params.will || 0;
-							avatar.damage = req.params.damage || 0;
-							avatar.skillBonus = req.params.skillBonus || 0;
-							avatar.willRegen = req.params.willRegen || 0;
+							//will be calculated in game
+							// avatar.position = {x:0,y:0};
+							// avatar.velocity = {x:0,y:0};
+							// avatar.acceleration = {x:0,y:0};
+							// avatar.hp = req.params.hp || 1;
+							// avatar.will = req.params.will || 0;
+							// avatar.damage = req.params.damage || 0;
+							// avatar.skillBonus = req.params.skillBonus || 0;
+							// avatar.willRegen = req.params.willRegen || 0;
 
 							avatar.save(function(err, result, numberAffected){
 								if(err) throw err;
@@ -201,6 +201,69 @@ Route_Avatar.prototype.addRoute = function(server) {
 					});
 			},function(err){
 				throw err;
+			});
+	});
+
+	//POST /account/register/:account/:password
+	//Register a client with a Account/Password. Return the sessionid
+	server.post('/'+this.collection+'/update/:id', function(req,res,next){
+		res.setHeader('Access-Control-Allow-Methods','POST');
+		DAO_Avatar.findOne({id:req.params.id}).exec()
+			//check if account exist
+			.then(function(avatar){
+				if(avatar === null) {
+					res.send(404,{'error':'avatar not exist'});
+					return next();
+				}
+				try {
+					console.log(avatar);
+					//owner info
+					avatar.name = req.params.name;
+					avatar.account_name = req.params.account_name;
+
+					//draw info
+					avatar.deltashow = req.params.deltashow;
+					avatar.size = req.params.size
+					avatar.rgba = req.params.rgba;
+
+					//move metrics
+					avatar.jump_speed = req.params.jump_speed;
+					avatar.move_speed = req.params.move_speed;
+					avatar.mass = req.params.mass;
+
+					//inventory
+					avatar.item_slot_chest = req.params.item_slot_chest;
+					avatar.item_slot_foot = req.params.item_slot_foot;
+					avatar.item_slot_head = req.params.item_slot_head;
+					avatar.item_slot_head2 = req.params.item_slot_head2;
+					avatar.item_slot_left_hand = req.params.item_slot_left_hand;
+					avatar.item_slot_right_hand = req.params.item_slot_right_hand;
+					avatar.inventory = req.params.inventory;
+
+					//attributs
+					avatar.strengh = req.params.strengh;
+					avatar.focus = req.params.focus;
+					avatar.endurance = req.params.endurance;
+					avatar.training = req.params.training;
+					avatar.willpower = req.params.willpower;
+
+					//will be calculated in game
+					// avatar.hp = req.params.hp || 1;
+					// avatar.will = req.params.will || 0;
+					// avatar.damage = req.params.damage || 0;
+					// avatar.skillBonus = req.params.skillBonus || 0;
+					// avatar.willRegen = req.params.willRegen || 0;
+
+					avatar.save(function(err, result, numberAffected){
+						if(err) next(err);
+						res.send(200, avatar);
+						return next();
+					});
+				} catch (err) {
+					next(err);
+				}
+			},function(err){
+				next(err);
 			});
 	});
 }
