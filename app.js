@@ -10,6 +10,7 @@ var Route_GameArea			= require('./route/GameArea.js');
 var Route_ItemTemplate		= require('./route/ItemTemplate.js');
 var Route_MonsterTemplate	= require('./route/MonsterTemplate.js');
 var Route_Level				= require('./route/Level.js');
+var Route_Skill				= require('./route/Skill.js');
 
 var DAO_Account				= require('./dao/Account.js');
 var DAO_Session				= require('./dao/Session.js');
@@ -69,6 +70,7 @@ mongoose.connect(config.mongodbStringServer,function(err){
 	new Route_GameArea().addRoute(server);
 	new Route_Session().addRoute(server);
 	new Route_Level().addRoute(server);
+	new Route_Skill().addRoute(server);
 
 	//Log error
 	server.use(function(req,res,next,err){
