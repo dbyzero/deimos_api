@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var accountSchema = mongoose.Schema({
+var gameAreaSchema = mongoose.Schema({
 	id :			{ type:Number, unique:true },
 	name :			{ type:String, unique:true, index:true, trim:true },
 	blocks :		{ type:Object },
@@ -12,4 +12,4 @@ var accountSchema = mongoose.Schema({
 	_id:true
 });
 
-module.exports =  mongoose.model('gamearea', accountSchema);
+module.exports =  mongoose.model('gamearea', gameAreaSchema);

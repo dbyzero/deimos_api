@@ -11,6 +11,9 @@ var Route_ItemTemplate		= require('./route/ItemTemplate.js');
 var Route_MonsterTemplate	= require('./route/MonsterTemplate.js');
 var Route_Level				= require('./route/Level.js');
 var Route_Skill				= require('./route/Skill.js');
+var Route_Effect				= require('./route/Effect.js');
+var Route_RectangleZoneTemplate = require('./route/RectangleZoneTemplate.js');
+var Route_SphereZoneTemplate = require('./route/SphereZoneTemplate.js');
 
 var DAO_Account				= require('./dao/Account.js');
 var DAO_Session				= require('./dao/Session.js');
@@ -71,6 +74,9 @@ mongoose.connect(config.mongodbStringServer,function(err){
 	new Route_Session().addRoute(server);
 	new Route_Level().addRoute(server);
 	new Route_Skill().addRoute(server);
+	new Route_Effect().addRoute(server);
+	new Route_RectangleZoneTemplate().addRoute(server);
+	new Route_SphereZoneTemplate().addRoute(server);
 
 	//Log error
 	server.use(function(req,res,next,err){

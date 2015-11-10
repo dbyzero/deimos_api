@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var accountSchema = mongoose.Schema({
+var avatarSchema = mongoose.Schema({
 	id 						: { type:Number, unique:true },
 	name 					: { type:String, unique:true },
 	account_name			: { type:String, trim:true },
@@ -45,4 +45,4 @@ var accountSchema = mongoose.Schema({
 	_id:true
 });
 
-module.exports =  mongoose.model('avatar', accountSchema);
+module.exports =  mongoose.model('avatar', avatarSchema);
