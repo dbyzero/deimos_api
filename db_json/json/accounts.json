@@ -5,5 +5,5 @@
 { "id" : 19, "login" : "asd", "password" : "7815696ecbf1c96e6894b779456d330e", "_id" : { "$oid" : "538f356b899dc9042e31eb03" }, "__v" : 0 }
 { "id" : 21, "login" : "asdaa", "password" : "f71dbe52628a3f83a77ab494817525c6", "_id" : { "$oid" : "538f38ede067da4d304e6487" }, "__v" : 0 }
 { "__v" : 0, "_id" : { "$oid" : "53910f97c7f245dc56682e5f" }, "id" : 22, "login" : "Marine", "mail" : "marine@duchesse.com", "password" : "f71dbe52628a3f83a77ab494817525c6" }
-{ "__v" : 0, "_id" : { "$oid" : "53b95d80b0267a29275516be" }, "id" : 24, "login" : "lolo", "mail" : "foo@bar.biz", "password" : "f71dbe52628a3f83a77ab494817525c6" }
+{ "__v" : 0, "_id" : { "$oid" : "53b95d80b0267a29275516be" }, "id" : 24, "login" : "lolo", "mail" : "foo@bar.biz", "password" : "f71dbe52628a3f83a77ab494817525c6", "usedBySession" : "825c7843394880079fe908c7d0805c6c" }
 { "id" : 25, "login" : "Teseur", "password" : "accc9105df5383111407fd5b41255e23", "_id" : { "$oid" : "53e0bd7c3c2ae58837b518f7" }, "__v" : 0 }

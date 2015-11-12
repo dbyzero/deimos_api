@@ -9,5 +9,5 @@
 { "_id" : { "$oid" : "53cb533a3d785994288b4567" }, "id" : 9, "name" : "Body Armor Test left", "skills" : [], "skin" : "armor_test", "slot" : "body" }
 { "_id" : { "$oid" : "53cb53493d7859eb088b4567" }, "id" : 10, "name" : "Head Armor Test left", "skills" : [], "skin" : "armor_test", "slot" : "head" }
 { "_id" : { "$oid" : "543fd02d3d7859a8158b4567" }, "id" : 11, "name" : "Weapon Test", "skills" : [], "skin" : "weapon_test", "slot" : "weapon" }
-{ "_id" : { "$oid" : "545c18283d78597e088b4567" }, "id" : 12, "name" : "Chicken", "skills" : [], "skin" : "chick", "slot" : "projectile" }
-{ "_id" : { "$oid" : "54bda3963d7859fc49f67ae7" }, "id" : 13, "name" : "Chicken", "skills" : [], "skin" : "chick", "slot" : "projectile" }
+{ "_id" : { "$oid" : "545c18283d78597e088b4567" }, "id" : 12, "name" : "Chicken", "skin" : "chick", "slot" : "projectile" }
+{ "__v" : 1, "_id" : { "$oid" : "54bda3963d7859fc49f67ae7" }, "id" : 13, "name" : "Chicken2", "skills" : [ "1", "2" ], "skin" : "chick", "slot" : "projectile" }
