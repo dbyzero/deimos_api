@@ -139,7 +139,8 @@ Route_Account.prototype.addRoute = function(server) {
 				DAO_Account.findOne({},{id:true},{sort:{id: -1}}).exec()
 					.then(function(result) {
 						var account = new DAO_Account();
-						account.id = (result.id + 1),
+						var accoundId = result ? result.id + 1 : 1;
+						account.id = accoundId,
 						account.login = req.params.account;
 						account.password = req.params.password;
 						account.mail = req.params.mail;

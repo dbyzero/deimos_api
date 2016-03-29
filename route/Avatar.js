@@ -151,7 +151,7 @@ Route_Avatar.prototype.addRoute = function(server) {
 							avatar.onGameArea = null;
 
 							//draw info
-							avatar.skin = 'avatar';
+							avatar.skin = 'avatar-test';
 							avatar.deltashow = req.params.deltashow;
 							avatar.size = req.params.size;
 							avatar.rgba = req.params.rgba;
