@@ -1,0 +1,1 @@
+{ "__v" : 1, "_id" : { "$oid" : "563b02c80e8fad897ff92b69" }, "description" : "Fireball", "icon" : ".icon-skill-fireball", "id" : 1, "name" : "Fireball", "onActivate" : [ "2" ], "passiveEffect" : [ "1" ], "replaceAttack" : true }

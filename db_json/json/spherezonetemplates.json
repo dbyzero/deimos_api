@@ -1,0 +1,1 @@
+{ "__v" : 2, "_id" : { "$oid" : "5641bba53f5a2766130ce31d" }, "applyEffectFrequency" : 1000, "color" : "#09eddc", "description" : "Aura heal 5HP/s", "effects" : [ "3" ], "growSpeed" : 0, "id" : 1, "initialRadius" : 50, "name" : "aura_heal", "skin" : "aura_basic" }

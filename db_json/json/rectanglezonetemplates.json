@@ -1,0 +1,1 @@
+{ "__v" : 1, "_id" : { "$oid" : "5640726af40a1d1f3adc8b67" }, "applyEffectFrequency" : 10, "color" : "#f309c1", "description" : "Dat fireball oject woot woot!!", "duration" : 10000, "effects" : [ "1" ], "height" : 20, "id" : 1, "isSolid" : false, "name" : "Pink Fireball", "ownerId" : 5, "skin" : ".fireball-anim", "width" : 20 }
