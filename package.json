@@ -16,12 +16,12 @@
     "node": ">=0.10"
   },
   "dependencies": {
-    "restify": "~2",
-    "mongoose": "~3",
     "colors": "~1",
     "crypto-js": "~3",
+    "inherits": "~2",
+    "mongoose": "~4",
     "q": "~1",
-    "inherits": "~2"
+    "restify": "~2"
   },
   "devDependencies": {
     "eslinter": "^3.2.1"
