@@ -5,6 +5,8 @@ MAINTAINER cyril@dbyzero.com
 RUN apt-get update
 RUN apt-get install -y nodejs npm git openssh-client mongodb supervisor vim
 RUN ln -s /usr/bin/nodejs /bin/node
+RUN apt-get install -y python-pip
+RUN pip install supervisor-stdout
 
 #mongodb directory
 RUN mkdir -p /data/db

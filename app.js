@@ -55,7 +55,7 @@ mongoose.connect(config.mongodbStringServer,function(err){
 	//global changement
 	server.use(function(req,res,next){
 		// console.log(req.headers);
-		console.log(req.method + ' ' + req.url);
+		console.log(new Date().toString().blue + ' ' + req.method.yellow + ' ' + req.url);
 		// console.log('Kepp alive : '+req.isKeepAlive());
 		res.setHeader('Connection','close');
 		return next();
