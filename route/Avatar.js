@@ -217,9 +217,10 @@ Route_Avatar.prototype.addRoute = function(server) {
 				}
 				try {
 					console.log(avatar);
-					//owner info
+					//avatar info
 					avatar.name = req.params.name;
 					avatar.account_name = req.params.account_name;
+					avatar.skin = req.params.skin;
 
 					//draw info
 					avatar.deltashow = req.params.deltashow;
