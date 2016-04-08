@@ -106,7 +106,7 @@ Route_Account.prototype.addRoute = function(server) {
 				session.account = req.params.account;
 				session.avatar = null;
 				session.save(function(err, result, numberAffected){
-					if(err) next(err);;
+					if(err) next(err);
 					return result;
 				});
 			},function(err){next(err);})
@@ -117,9 +117,8 @@ Route_Account.prototype.addRoute = function(server) {
 					{'usedBySession':sessionid},
 					{'strict':false},
 					function(err,nbr,resultSaveAvatar){
-						if(nbr === 1 ) {
-							res.send(200,{'sessionid':sessionid });
-						}
+						if(err) next(err);
+						res.send(200,{'sessionid':sessionid });
 						return next();
 					});
 			},function(err){next(err);})
