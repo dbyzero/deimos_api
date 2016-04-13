@@ -42,6 +42,26 @@ Route_GameArea.prototype.addRoute = function(server) {
 			});
 	}.bind(this));
 
+	server.get('/'+this.collection+'/byname/:name', function(req,res,next){
+		this.dao.find({name:req.params.name}, '-_id -__v').exec()
+			.then(function(result){
+					res.setHeader('Access-Control-Allow-Methods','GET');
+					if(result instanceof Object) {
+						res.send(200,result[0])
+						return next();
+					}
+					res.send(404);
+					return next(404);
+				},
+				function(err){
+					throw err;
+				})
+			.end(function() {
+				res.end();
+				return next();
+			});
+	}.bind(this));
+
 	server.post('/'+this.collection+'/update/:id', function(req,res,next){
 		res.setHeader('Access-Control-Allow-Methods','POST');
 		this.dao.findOne({'id':req.params.id}).exec()
